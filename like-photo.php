@@ -71,7 +71,9 @@ siteurl = "<?php echo get_site_url(); ?>";
 		return '<div class="like-photo-wrapper">'.$matches[0].'<div class="votes"><span class="currentVotes">'.$votes_text.' '.$vote_count.'</span>'.$vote_link.'</div></div>';
 	}
 	
-	function add_like_link ($content) {
+	// [like_photo]
+	function add_voting_handler($atts, $content = null)
+	{
 		global $post;
 		
 		$pattern        = '#(<a.[^>]*?>)?<img[^>]*src="([^"]*)"[^>/]*?/>(?(1)\s*</a>)#isU';
@@ -81,8 +83,8 @@ siteurl = "<?php echo get_site_url(); ?>";
 		return $content;
 		
 	}
-	add_filter('the_content', 'add_like_link', 99 );
-	
+	add_shortcode('add_voting', 'add_voting_handler' );
+		
     function add_like_photo_stylesheet() 
     {
         $myStyleUrl = WP_PLUGIN_URL . '/like-photo/style.css';
@@ -114,6 +116,22 @@ siteurl = "<?php echo get_site_url(); ?>";
 	}
 	add_action('wp_ajax_nopriv_likephoto_vote', 'likephoto_vote');
 	add_action('wp_ajax_likephoto_vote', 'likephoto_vote');
+	
+	function likephoto_attachment_fields_to_edit($form_fields, $post) {
+	    if ( substr($post->post_mime_type, 0, 5) == 'image' ) {
+	        $form_fields['vote'] = array(
+		    'label' => __('Vote on this image?'),
+		    'input' => 'html',
+		    'html'  => "
+		        <input type='checkbox'
+	                name='attachments[$post->ID][vote]'
+	                id='attachments[$post->ID][vote]'
+	                size='50' value='checked' /><br />"
+	         );
+	    }
+	    return $form_fields;
+	}
+	//add_filter('attachment_fields_to_edit', 'likephoto_attachment_fields_to_edit', 11, 2);
 	
 	if (!is_admin())
 	{
