@@ -4,7 +4,7 @@
     Plugin URI: http://www.minioak.com/portfolio/like-photo 
     Description: Plugin for adding a "Like" button to individual images. 
     Author: John Mitchell
-    Version: 1.0 
+    Version: 1.1 
     Author URI: http://www.minioak.com
     */ 
     
