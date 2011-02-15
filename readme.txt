@@ -34,3 +34,5 @@ This section describes how to install the plugin and get it working.
 * Orginal version
 = 1.1 =
 * Switching automatic vote tagging to only tagging images contained within the [add_voting] shortcode tag.
+= 1.2 =
+* Fixed problem with inbuilt WordPress gallery. Now attaches itself correctly.
