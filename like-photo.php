@@ -78,6 +78,9 @@ siteurl = "<?php echo get_site_url(); ?>";
 		
 		$pattern        = '#(<a.[^>]*?>)?<img[^>]*src="([^"]*)"[^>/]*?/>(?(1)\s*</a>)#isU';
 		
+		//Process nested content first
+		$content = do_shortcode($content);
+		
 		$content = preg_replace_callback($pattern, "get_image_votes", $content);
 		
 		return $content;
