@@ -1,0 +1,5 @@
+.like-photo-wrapper { position: relative; }
+.like-photo-wrapper .votes { position: absolute; background: transparent; color: white; bottom: 0em;  padding: 0.25em;  }
+.like-photo-wrapper span.currentVotes { padding-right: 1em; background: black;  }
+.like-photo-wrapper .votes a { background: black; color: white;  text-decoration: none;  }
+.like-photo-wrapper .votes a:hover, .like-photo-wrapper .votes a:focus { background: white; color: black; }
